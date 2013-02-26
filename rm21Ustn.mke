@@ -1,0 +1,33 @@
+#----------------------------------------------------------------------
+#
+#  $Copyright: (c) 2011 Bentley Systems, Incorporated. All rights reserved. $
+#
+#  Application Make File
+#
+$RCSfile: CSharpAddIn.mke,v $
+#   $Revision: 1.1 $
+#       $Date: 2011/08/09 13:12:41 $
+#  $Copyright: (c) 2011 Bentley Systems, Incorporated. All rights reserved. $
+#
+#  "MicroStation" is a registered trademark and "MDL" and "MicroCSL"
+#  are trademarks of Bentley Systems, Inc.
+#
+#  Limited permission is hereby granted to reproduce and modify this
+#  copyrighted material provided that the resulting code is used only
+#  in conjunction with Bentley Systems products under the terms of the
+#  license agreement provided therein, and that this notice is retained
+#  in its entirety in any such reproduction or modification.
+#
+#----------------------------------------------------------------------
+%include    mdl.mki
+
+appName = rm21Ustn
+
+MSB-BaseIntermediateOutputPath = $(mdlapps)$(appName)/
+MSB-OutputPath=$(mdlapps)
+o = $(MSB-BaseIntermediateOutputPath)$(Configuration)/
+
+buildSolution:
+    !~@mkdir $(o)
+    |[== Building $(appName) ==]
+    ~task msbuild $(CommonMSBuildOpts) -i:Projects=$(_MakeFilePath)$(appName).csproj

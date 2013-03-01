@@ -9,9 +9,9 @@
 +--------------------------------------------------------------------------------------*/
 
 using System;
-
-using BCOM=Bentley.Interop.MicroStationDGN;
-using BMI=Bentley.MicroStation.InteropServices;
+using System.Collections.Generic;
+using BCOM = Bentley.Interop.MicroStationDGN;
+using BMI = Bentley.MicroStation.InteropServices;
 
 namespace rm21Ustn
 {
@@ -23,12 +23,12 @@ namespace rm21Ustn
     
       public static void rm21UstnCommand (System.String unparsed)
       {
-
+         
       }
 
       public static void rm21UstnPromoteElementsToHA(System.String unparsed)
       {
-         rmUhorizontalAlignments.promoteSelectionSetToHA();
+         rm2UhorizontalAlignments.promoteSelectionSetToHA((unparsed.Split(' '))[0]);
       }
 
       public static void rm21UstnPlacementCommand(System.String unparsed)

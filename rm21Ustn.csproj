@@ -136,6 +136,7 @@
     <None Include="StandardPostBuild.bat" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Horizontal\rm2UfunGeom.cs" />
     <Compile Include="KeyinCommands.cs" />
     <Compile Include="rm21Ustn.cs" />
     <Compile Include="rm21Ustnform.cs">
@@ -143,7 +144,7 @@
     </Compile>
     <Compile Include="rm21UstnLocateCmd.cs" />
     <Compile Include="rm21UstnPlacementCmd.cs" />
-    <Compile Include="Horizontal\rmUhorizontalAlignments.cs" />
+    <Compile Include="Horizontal\rm2UhorizontalAlignments.cs" />
     <Compile Include="Utilities\rmUpoint.cs" />
   </ItemGroup>
   <ItemGroup>

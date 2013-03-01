@@ -22,17 +22,20 @@
         <KeyinTable ID="rm21Ustn">
             <Keyword CommandWord="Open"> </Keyword>
             <Keyword CommandWord="Place"> </Keyword>
+            <Keyword CommandWord="Promote"> </Keyword>
             <Keyword CommandWord="Locate"> </Keyword>
         </KeyinTable>
 
     </SubKeyinTables>
 
-    <!--Define a mapping from key-in to the method that handles the key-in.-->
+  <!--Define a mapping from key-in to the method that handles the key-in.-->
     <KeyinHandlers>
         <KeyinHandler Keyin="rm21 OPEN" 
             Function="rm21Ustn.KeyinCommands.rm21UstnCommand"/>
         <KeyinHandler Keyin="rm21 PLACE" 
             Function="rm21Ustn.KeyinCommands.rm21UstnPlacementCommand"/>
+        <KeyinHandler Keyin="rm21 PROMOTE" 
+            Function="rm21Ustn.KeyinCommands.rm21UstnPromoteElementsToHA"/>
         <KeyinHandler Keyin="rm21 LOCATE" 
             Function="rm21Ustn.KeyinCommands.rm21UstnLocateCommand"/>
     </KeyinHandlers>

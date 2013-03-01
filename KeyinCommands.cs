@@ -26,9 +26,14 @@ namespace rm21Ustn
 
       }
 
-      public static void rm21UstnPlacementCommand (System.String unparsed)
+      public static void rm21UstnPromoteElementsToHA(System.String unparsed)
       {
-         rm21UstnPlacementCmd.StartPlacementCommand (rm21Ustn.MyAddin); 
+         rmUhorizontalAlignments.promoteSelectionSetToHA();
+      }
+
+      public static void rm21UstnPlacementCommand(System.String unparsed)
+      {
+         rm21UstnPlacementCmd.StartPlacementCommand(rm21Ustn.MyAddin);
       }
 
       public static void rm21UstnLocateCommand(System.String unparsed)

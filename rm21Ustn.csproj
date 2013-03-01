@@ -98,6 +98,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Program Files (x86)\Bentley\MicroStation V8i (SELECTseries)\MicroStation\assemblies\ECFramework\Bentley.Windowing.dll</HintPath>
     </Reference>
+    <Reference Include="ptsBoundingBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\RM21SourceCore\rm21Core\bin\Release\ptsBoundingBox.dll</HintPath>
+    </Reference>
+    <Reference Include="ptsCogo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\RM21SourceCore\rm21Core\bin\Release\ptsCogo.dll</HintPath>
+    </Reference>
+    <Reference Include="rm21Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\RM21SourceCore\rm21Core\bin\Release\rm21Core.dll</HintPath>
+    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -131,6 +143,8 @@
     </Compile>
     <Compile Include="rm21UstnLocateCmd.cs" />
     <Compile Include="rm21UstnPlacementCmd.cs" />
+    <Compile Include="rmUhorizontalAlignments.cs" />
+    <Compile Include="Utilities\rmUpoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="rm21Ustnform.resx" />
@@ -147,6 +161,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

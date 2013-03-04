@@ -22,7 +22,7 @@ namespace rm21Ustn
          if (false == app.ActiveModelReference.AnyElementsSelected)
             return;
 
-         if (false == selectedElementsValidForPromotion(app))
+         if (false == selectedElementsAreValidForPromotion(app))
             return;
 
          promoteSelectionSetToHorizAlignment(app);
@@ -49,8 +49,8 @@ namespace rm21Ustn
             if (true == element.IsLineElement())
             {
                LineElement Line = (LineElement)element;
-               ptsCogo.ptsPoint beginPt = rmUpoint.CreatePtsPoint(Line.StartPoint);
-               ptsCogo.ptsPoint endPt = rmUpoint.CreatePtsPoint(Line.StartPoint);
+               ptsCogo.ptsPoint beginPt = rm2Upoint.CreatePtsPoint(Line.StartPoint);
+               ptsCogo.ptsPoint endPt = rm2Upoint.CreatePtsPoint(Line.StartPoint);
                addToFunGeomList(new List<ptsPoint>() { beginPt, endPt },
                   expectedType.LineSegment, funGeometryList);
             }
@@ -72,11 +72,12 @@ namespace rm21Ustn
          funGeomList.Add(funGeom);
       }
 
-      private static bool selectedElementsValidForPromotion(BCOM.Application app)
+      private static bool selectedElementsAreValidForPromotion(BCOM.Application app)
       {
          return true;
       }
 
 
    }
+
 }

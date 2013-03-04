@@ -10,10 +10,7 @@ namespace rm21Ustn.Horizontal
    internal class rm2UfunGeom : IRM21fundamentalGeometry
    {
       public List<ptsPoint> ptList
-      {
-         get;
-         set;
-      }
+      {  get; set; }
 
       public expectedType expType { get; set; }
 

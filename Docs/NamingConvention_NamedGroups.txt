@@ -1,0 +1,19 @@
+﻿
+Named Groups are the lynchpin for persisting RM21 models in Microstation dgn files.  
+
+Names of named groups mirror the grouping hierarchy.  Code will ensure that named groups which have hierarched names have the same hierarchical relationship in their microstation relationships.
+
+The name delimiter is the colon character, ':'    .
+
+All RM21-generated and owned named groups begin with RM21.
+
+The second level of a named group name is the corridor name.  So a corridor named "US-70" would be represented by all of the graphical dgn elements in the named group 
+RM21:US-70
+
+In this kind of case (which will be the most common), the name of the Corridor's baseline Horizontal Alignment is the same as the name of the corridor.
+
+But RM21 allows for there to be horizontal alignments that are not affiliated with Corridors.  In this case, the named group name has two colons, as in
+RM21::Flyover1
+
+Features are to be clarified in this document as they are discovered and implemented in the software.
+

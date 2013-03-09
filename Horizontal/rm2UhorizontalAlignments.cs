@@ -25,10 +25,18 @@ namespace rm21Ustn
          if (false == selectedElementsAreValidForPromotion(app))
             return;
 
-         promoteSelectionSetToHorizAlignment(app);
+         if (true == doesHAofThisNameExist(requestedName))
+            throw new HorzontalAlignment_NameAlreadyExists();
+
+         promoteSelectionSetToHorizAlignment(app, requestedName);
       }
 
-      private static void promoteSelectionSetToHorizAlignment(BCOM.Application app)
+      private static bool doesHAofThisNameExist(string requestedName)
+      {
+         return false;
+      }
+
+      private static void promoteSelectionSetToHorizAlignment(BCOM.Application app, String name)
       {
          Element elem;
 
@@ -39,7 +47,17 @@ namespace rm21Ustn
          if (ssElements.Count > 1) throw new NotImplementedException();
 
          rm21HorizontalAlignment newHA = CreateRm21HA(ssElements);
+
+         if (null == rm21Ustn.MyAddin.rm21UstnProject) rm21Ustn.MyAddin.rm21UstnProject = new rm2Uproject();
+
+         // throws HorzontalAlignment_NameAlreadyExists
+         rm21Ustn.MyAddin.rm21UstnProject.AddUnaffiliatedHA(newHA, name, ssElements);
       }
+
+      //private static rm2UbridgeHAs rm2UbridgeHAs()
+      //{
+      //   throw new NotImplementedException();
+      //}
 
       private static rm21HorizontalAlignment CreateRm21HA(List<Element> selectedElements)
       {

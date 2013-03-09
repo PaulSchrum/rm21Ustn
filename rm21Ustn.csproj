@@ -128,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="commands.xml" />
+    <Content Include="Docs\NamingConvention_NamedGroups.txt" />
     <Content Include="ReadMe.txt" />
     <Content Include="Sample.txt" />
   </ItemGroup>
@@ -136,6 +137,9 @@
     <None Include="StandardPostBuild.bat" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeBridge\rm2UcodeBridgeHorizontalAlignment.cs" />
+    <Compile Include="CodeBridge\rm2UCodeBridgeMemberBase.cs" />
+    <Compile Include="Exceptions\HorzontalAlignment_NameAlreadyExists.cs" />
     <Compile Include="Horizontal\rm2UfunGeom.cs" />
     <Compile Include="KeyinCommands.cs" />
     <Compile Include="rm21Ustn.cs" />
@@ -145,6 +149,14 @@
     <Compile Include="rm21UstnLocateCmd.cs" />
     <Compile Include="rm21UstnPlacementCmd.cs" />
     <Compile Include="Horizontal\rm2UhorizontalAlignments.cs" />
+    <Compile Include="rm2Uelement\rm2Uarc.cs" />
+    <Compile Include="rm2Uelement\rm2Uelement.cs" />
+    <Compile Include="rm2Uelement\rm2UelementFactory.cs" />
+    <Compile Include="rm2Uelement\rm2UgeometricElement.cs" />
+    <Compile Include="rm2Uelement\rm2UgraphicalElement.cs" />
+    <Compile Include="rm2Uelement\rm2UlineSegment.cs" />
+    <Compile Include="rm2Uelement\rm2UNamedGroup.cs" />
+    <Compile Include="rm2Uelement\rm2Upath.cs" />
     <Compile Include="rm2Uproject.cs" />
     <Compile Include="Utilities\rm2Uelements.cs" />
     <Compile Include="Utilities\rm2Upoint.cs" />

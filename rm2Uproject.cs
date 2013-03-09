@@ -84,7 +84,11 @@ namespace rm21Ustn
       private void addAllElementsToNamedGroup(NamedGroupElement namedGroup, List<Element> selSet)
       {
          foreach (var el in selSet)
-           namedGroup.AddMember(el);
+         {
+            el.IsLocked = true;
+            namedGroup.AddMember(el);
+            el.Rewrite();
+         }
       }
 
 

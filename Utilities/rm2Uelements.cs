@@ -48,30 +48,8 @@ namespace rm21Ustn.Utilities
       public MsdElementType ustnType { get; set; }
    }
 
-   public static class NamedGroups_extensionMethods
-   {
-      public static void AddMember(this NamedGroup ng, Element el)
-      {
-         IntPtr exNamedGroup = ng.ElementRef;
-         IntPtr exElemId = (IntPtr) el.MdlElementRef();
-         IntPtr mdlRef = Bentley.Internal.MicroStation.ModelReference.Active.DgnModelRefIntPtr;
-         mdlNamedGroup_addMember(exNamedGroup, exElemId, mdlRef, 0);
-      }
-
-      [DllImport("stdmdlbltin.dll")]
-      static extern int mdlNamedGroup_addMember(IntPtr namedGroup, IntPtr elementId, IntPtr modelRef, int memberFlags);
-
-      public static void WriteToFile(this NamedGroupElement nge)
-      {
-         //NamedGroup ng = nge.;
-         //IntPtr exNamedGroup = ng.ElementRef;
-         //mdlNamedGroup_writeToFile(exNamedGroup, 0);
-      }
-
-      [DllImport("stdmdlbltin.dll")]
-      static extern int mdlNamedGroup_writeToFile(IntPtr namedGroup, int overwriteExisting); 
+      //[DllImport("stdmdlbltin.dll")]
+      //static extern int mdlNamedGroup_addMember(IntPtr namedGroup, IntPtr elementId, IntPtr modelRef, int memberFlags);
 
 
-
-   }
 }

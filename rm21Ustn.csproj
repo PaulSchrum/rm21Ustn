@@ -153,6 +153,7 @@
     <Compile Include="rm2Uelement\rm2Uelement.cs" />
     <Compile Include="rm2Uelement\rm2UelementFactory.cs" />
     <Compile Include="rm2Uelement\rm2UgeometricElement.cs" />
+    <Compile Include="rm2Uelement\rm2UgeometricElementUndeveloped.cs" />
     <Compile Include="rm2Uelement\rm2UgraphicalElement.cs" />
     <Compile Include="rm2Uelement\rm2UlineSegment.cs" />
     <Compile Include="rm2Uelement\rm2UNamedGroup.cs" />

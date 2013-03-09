@@ -17,12 +17,13 @@ using BCOM = Bentley.Interop.MicroStationDGN;
 using BMI = Bentley.MicroStation.InteropServices;
 using Bentley.Internal.MicroStation;
 using System.Runtime.InteropServices;
+using rm21Ustn.rm2Uelement;
 
 namespace rm21Ustn.Utilities
 {
    public static class rm2Uelements
    {
-      public static List<rm2UElementTypeTuple> convertElEnumToList(ElementEnumerator elEnum)
+      public static List<rm2UElementTypeTuple> convertElEnumToTupleList(ElementEnumerator elEnum)
       {
          if (null == elEnum) return null;
          /* */
@@ -35,6 +36,28 @@ namespace rm21Ustn.Utilities
             newEntry.element = el;
             newEntry.ustnType = el.Type;
             returnList.Add(newEntry);
+         } /* */
+
+         return returnList;
+      }
+
+      public static List<rm2UgraphicalElement> convertElEnumToRm2UList(ElementEnumerator elEnum)
+      {
+         if (null == elEnum) return null;
+         /* */
+         List<rm2UgraphicalElement> returnList = null;
+
+         while (elEnum.MoveNext())
+         {
+            Element el = elEnum.Current;
+            rm2UgraphicalElement graphicEL = rm2UgraphicalElement.Factory(el);
+
+            if (null != graphicEL)
+            {
+               if(returnList == null)
+                  returnList = new List<rm2UgraphicalElement>();
+               returnList.Add(graphicEL);
+            }
          } /* */
 
          return returnList;

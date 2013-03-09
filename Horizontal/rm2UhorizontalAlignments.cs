@@ -10,6 +10,7 @@ using ptsCogo;
 using rm21Ustn.Utilities;
 using ptsCogo.Horizontal;
 using rm21Ustn.Horizontal;
+using rm21Ustn.rm2Uelement;
 
 namespace rm21Ustn
 {
@@ -92,8 +93,45 @@ namespace rm21Ustn
 
       private static bool selectedElementsAreValidForPromotion(BCOM.Application app)
       {
+         var selectedElements = rm2Uelements.convertElEnumToRm2UList(app.ActiveModelReference.GetSelectedElements());
+
+         bool allowedElements = elementsAreAllOfAllowedType(selectedElements);
+         bool notAlreadyRM21 = elementsAreNotAlreadyRM21(selectedElements);
+
+         bool returnBool = allowedElements && notAlreadyRM21;
+
+         return returnBool;
+      }
+
+      private static bool elementsAreAllOfAllowedType(List<rm2UgraphicalElement> selectedElements)
+      {
+         Type elType = null;
+         Type lineSegType = null;
+         Type arcType = null;
+
+         bool isLine = false;
+         bool isArc = false;
+         bool returnBool = false;
+
+         foreach (var el in selectedElements)
+         {
+            elType = el.GetType();
+            lineSegType = Type.GetType("rm21Ustn.rm2Uelement.rm2UlineSegment");
+            arcType = Type.GetType("rm21Ustn.rm2Uelement.rm2Uarc");
+            isLine = elType == lineSegType;
+            isArc = elType == arcType;
+            returnBool = returnBool || (isLine || isArc);
+         }
+
+         return returnBool;
+
+      }
+
+      private static bool elementsAreNotAlreadyRM21(List<rm2UgraphicalElement> selectedElements)
+      {
          return true;
       }
+
 
 
    }

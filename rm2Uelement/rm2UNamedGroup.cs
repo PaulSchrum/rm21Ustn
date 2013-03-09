@@ -9,6 +9,8 @@ namespace rm21Ustn.rm2Uelement
 {
    public class rm2UNamedGroup : rm2UgraphicalElement
    {
+      public rm2UNamedGroup() : base() { }
+
       public BCOM.NamedGroupElement EL
       {
          get { return (BCOM.NamedGroupElement)el; }

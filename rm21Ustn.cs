@@ -103,7 +103,7 @@ namespace rm21Ustn
          System.Console.WriteLine("Test");
          ElementEnumerator elEnum = modelReference.Scan(scanCriteria);
 
-         List<Utilities.rm2UElementTypeTuple> elList = rm2Uelements.convertElEnumToList(elEnum);
+         List<Utilities.rm2UElementTypeTuple> elList = rm2Uelements.convertElEnumToTupleList(elEnum);
 
          foreach (var el in elList)
          {

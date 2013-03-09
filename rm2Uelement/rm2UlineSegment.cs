@@ -1,16 +1,21 @@
-﻿using System;
+﻿using Bentley.Interop.MicroStationDGN;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using BCOM = Bentley.Interop.MicroStationDGN;
+//using BCOM = Bentley.Interop.MicroStationDGN;
 
 namespace rm21Ustn.rm2Uelement
 {
    public class rm2UlineSegment : rm2Upath
    {
-      public BCOM.LineElement EL
+      public rm2UlineSegment() : base() { }
+
+      public rm2UlineSegment(Element el) : base(el) { }
+
+      public LineElement EL
       {
-         get { return (BCOM.LineElement)el; }
+         get { return (LineElement)el; }
          private set { }
       }
    }

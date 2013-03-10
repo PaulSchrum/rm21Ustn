@@ -47,7 +47,7 @@ namespace rm21Ustn
          var ssElements = selectionSet.BuildArrayFromContents().ToList<Element>();
          if (ssElements.Count > 1) throw new NotImplementedException();
 
-         rm21HorizontalAlignment newHA = CreateRm21HA(ssElements);
+         rm21HorizontalAlignment newHA = CreateRm21HA(ssElements, name);
 
          if (null == rm21Ustn.MyAddin.rm21UstnProject) rm21Ustn.MyAddin.rm21UstnProject = new rm2Uproject();
 
@@ -60,7 +60,7 @@ namespace rm21Ustn
       //   throw new NotImplementedException();
       //}
 
-      private static rm21HorizontalAlignment CreateRm21HA(List<Element> selectedElements)
+      private static rm21HorizontalAlignment CreateRm21HA(List<Element> selectedElements, String name)
       {
          List<IRM21fundamentalGeometry> funGeometryList = new List<IRM21fundamentalGeometry>();
          foreach (var element in selectedElements)
@@ -77,7 +77,7 @@ namespace rm21Ustn
          
          if (null == funGeometryList) return null;
 
-         return new rm21HorizontalAlignment(funGeometryList, null, null);
+         return new rm21HorizontalAlignment(funGeometryList, name, null);
       }
 
       private static void addToFunGeomList(List<ptsPoint> pointList, expectedType geomType, List<IRM21fundamentalGeometry> funGeomList)

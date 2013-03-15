@@ -63,6 +63,30 @@ namespace rm21Ustn.Utilities
          return returnList;
       }
 
+
+      internal static List<rm2UgeometricElement> returnOnlyGeometricElements(List<rm2UgraphicalElement> inList)
+      {
+         if (null == inList) return null;
+         var returnList = new List<rm2UgeometricElement>();
+         foreach (var item in inList)
+            if (item.GetType() == Type.GetType("rm21Ustn.rm2Uelement.rm2UgeometricElement"))
+               returnList.Add((rm2UgeometricElement)item);
+
+         return returnList;
+      }
+
+      internal static List<rm2Upath> returnOnlyPathElements(List<rm2UgraphicalElement> inList)
+      {
+         if (null == inList) return null;
+         var returnList = new List<rm2Upath>();
+
+         foreach (var item in inList)
+            if (item is rm2Upath)
+               returnList.Add((rm2Upath)item);
+
+         if (returnList.Count == 0) returnList = null;
+         return returnList;
+      }
    }
 
    public class rm2UElementTypeTuple

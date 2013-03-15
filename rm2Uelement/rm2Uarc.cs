@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Bentley.Interop.MicroStationDGN;
+using rm21Ustn.Horizontal;
+using ptsCogo;
+using rm21Ustn.Utilities;
 
 namespace rm21Ustn.rm2Uelement
 {
@@ -15,6 +18,28 @@ namespace rm21Ustn.rm2Uelement
       {
          get { return (ArcElement)el; }
          private set { }
+      }
+
+      internal override rm2UfunGeom getAsFundamentalGeometry()
+      {
+         rm2UfunGeom returnItem = new rm2UfunGeom();
+         ArcElement Arc = this.EL;
+
+         returnItem.ptList = new List<ptsPoint>();
+         returnItem.ptList.Add(rm2Upoint.CreatePtsPoint(Arc.StartPoint));
+         returnItem.ptList.Add(rm2Upoint.CreatePtsPoint(Arc.CenterPoint));
+         returnItem.ptList.Add(rm2Upoint.CreatePtsPoint(Arc.EndPoint));
+
+         if (Math.Abs(ptsAngle.degreesFromRadians(Arc.SweepAngle)) < 180.0)
+            returnItem.expType = ptsCogo.Horizontal.expectedType.ArcSegmentInsideSolution;
+         else if (Math.Abs(ptsAngle.degreesFromRadians(Arc.SweepAngle)) > 180.0)
+            returnItem.expType = ptsCogo.Horizontal.expectedType.ArcSegmentOutsideSoluion;
+         else if (Arc.SweepAngle > 0.0)
+            returnItem.expType = ptsCogo.Horizontal.expectedType.ArcHalfCircleDeflectingLeft;
+         else
+            returnItem.expType = ptsCogo.Horizontal.expectedType.ArcHalfCircleDeflectingRight;
+
+         return returnItem;
       }
    }
 }

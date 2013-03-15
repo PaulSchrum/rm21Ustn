@@ -11,7 +11,5 @@ namespace rm21Ustn.rm2Uelement
       public rm2UgeometricElementUndeveloped() : base() { }
 
       public rm2UgeometricElementUndeveloped(Element el) : base(el) { }
-
-
    }
 }

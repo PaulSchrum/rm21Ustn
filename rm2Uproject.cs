@@ -12,6 +12,7 @@ using rm21Ustn.Horizontal;
 using Bentley.Internal.MicroStation;
 using System.Runtime.InteropServices;
 using rm21Ustn.Utilities;
+using rm21Ustn.rm2Uelement;
 
 namespace rm21Ustn
 {
@@ -46,25 +47,25 @@ namespace rm21Ustn
          public NamedGroupElement namedGroup { get; set; }
          public rm21HorizontalAlignment rm21HA;
       }
-      
 
 
 
-      internal void AddUnaffiliatedHA(rm21HorizontalAlignment newHA, string name, List<Element> selSet)
+
+      internal void AddUnaffiliatedHA(rm21HorizontalAlignment newHA, string name, List<rm2Upath> selectionSet)
       {
          validateNameForUnaffiliatedHA(name);  // may throw HorzontalAlignment_NameAlreadyExists.
          if (null == horizAlignmentSoftBridge) horizAlignmentSoftBridge = new List<rm2UbridgeHAs>();
          var haBridgeEntry = new rm2UbridgeHAs();
          haBridgeEntry.rm21HA = newHA;
          haBridgeEntry.Name = name;
-         haBridgeEntry.namedGroup = CreateHA_NamedGroup(name, selSet);
+         haBridgeEntry.namedGroup = CreateHA_NamedGroup(name, selectionSet);
          if (null == haBridgeEntry) return;  // failed.  dont know why.
 
          if (null == horizAlignmentSoftBridge) horizAlignmentSoftBridge = new List<rm2UbridgeHAs>();
          horizAlignmentSoftBridge.Add(haBridgeEntry);
       }
 
-      private NamedGroupElement CreateHA_NamedGroup(string name, List<Element> selSet)
+      private NamedGroupElement CreateHA_NamedGroup(string name, List<rm2Upath> selectionSet)
       {
          IntPtr activeModelRef = Bentley.Internal.MicroStation.ModelReference.Active.DgnModelRefIntPtr;
          IntPtr nullElemTemplateRef = (IntPtr) 0;
@@ -75,19 +76,19 @@ namespace rm21Ustn
             Bentley.MicroStation.InteropServices.Utilities.ComApp.ActiveModelReference.AddNewNamedGroup(ngName);
          returnNG.Name = ngName;
 
-         addAllElementsToNamedGroup(returnNG, selSet);
+         addAllElementsToNamedGroup(returnNG, selectionSet);
          returnNG.Rewrite();
 
          return returnNG;
       }
 
-      private void addAllElementsToNamedGroup(NamedGroupElement namedGroup, List<Element> selSet)
+      private void addAllElementsToNamedGroup(NamedGroupElement namedGroup, List<rm2Upath> selectionSet)
       {
-         foreach (var el in selSet)
+         foreach (var item in selectionSet)
          {
-            el.IsLocked = true;
-            namedGroup.AddMember(el);
-            el.Rewrite();
+            item.el.IsLocked = true;
+            namedGroup.AddMember(item.el);
+            item.el.Rewrite();
          }
       }
 
@@ -110,6 +111,7 @@ namespace rm21Ustn
       }
 
       //public static 
+
 
    }
 

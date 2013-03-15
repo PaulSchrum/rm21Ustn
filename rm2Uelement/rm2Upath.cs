@@ -1,4 +1,5 @@
 ﻿using Bentley.Interop.MicroStationDGN;
+using rm21Ustn.Horizontal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,7 @@ namespace rm21Ustn.rm2Uelement
       public rm2Upath() : base() { }
 
       public rm2Upath(Element el) : base(el) { }
+
+      internal abstract rm2UfunGeom getAsFundamentalGeometry();
    }
 }

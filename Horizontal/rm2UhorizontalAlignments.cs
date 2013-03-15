@@ -39,56 +39,36 @@ namespace rm21Ustn
 
       private static void promoteSelectionSetToHorizAlignment(BCOM.Application app, String name)
       {
-         Element elem;
-
          if (null == app) throw new ArgumentNullException();
 
-         BCOM.ElementEnumerator selectionSet = app.ActiveModelReference.GetSelectedElements();
-         var ssElements = selectionSet.BuildArrayFromContents().ToList<Element>();
-         if (ssElements.Count > 1) throw new NotImplementedException();
+         //BCOM.ElementEnumerator selectionSet = app.ActiveModelReference.GetSelectedElements();
+         //var ssElements = selectionSet.BuildArrayFromContents().ToList<Element>();
 
-         rm21HorizontalAlignment newHA = CreateRm21HA(ssElements, name);
+         var selectionSet = rm2Uelements.returnOnlyPathElements(
+            rm2Uelements.convertElEnumToRm2UList(app.ActiveModelReference.GetSelectedElements()));
+         if (selectionSet.Count > 1) throw new NotImplementedException();
+         rm21HorizontalAlignment newHA = CreateRm21HA(selectionSet, name);
 
          if (null == rm21Ustn.MyAddin.rm21UstnProject) rm21Ustn.MyAddin.rm21UstnProject = new rm2Uproject();
 
          // throws HorzontalAlignment_NameAlreadyExists
-         rm21Ustn.MyAddin.rm21UstnProject.AddUnaffiliatedHA(newHA, name, ssElements);
+         rm21Ustn.MyAddin.rm21UstnProject.AddUnaffiliatedHA(newHA, name, selectionSet);
       }
 
-      //private static rm2UbridgeHAs rm2UbridgeHAs()
-      //{
-      //   throw new NotImplementedException();
-      //}
-
-      private static rm21HorizontalAlignment CreateRm21HA(List<Element> selectedElements, String name)
+      private static rm21HorizontalAlignment CreateRm21HA(List<rm2Upath> selectionSet, string name)
       {
          List<IRM21fundamentalGeometry> funGeometryList = new List<IRM21fundamentalGeometry>();
-         foreach (var element in selectedElements)
+         foreach (var element in selectionSet)
          {
-            if (true == element.IsLineElement())
-            {
-               LineElement Line = (LineElement)element;
-               ptsCogo.ptsPoint beginPt = rm2Upoint.CreatePtsPoint(Line.StartPoint);
-               ptsCogo.ptsPoint endPt = rm2Upoint.CreatePtsPoint(Line.StartPoint);
-               addToFunGeomList(new List<ptsPoint>() { beginPt, endPt },
-                  expectedType.LineSegment, funGeometryList);
-            }
+            rm2UfunGeom funGeomItem = element.getAsFundamentalGeometry();
+            if (null != funGeomItem)
+               funGeometryList.Add(funGeomItem);
          }
          
          if (null == funGeometryList) return null;
+         if (0 == funGeometryList.Count) return null;
 
          return new rm21HorizontalAlignment(funGeometryList, name, null);
-      }
-
-      private static void addToFunGeomList(List<ptsPoint> pointList, expectedType geomType, List<IRM21fundamentalGeometry> funGeomList)
-      {
-         if (null == pointList || null == funGeomList) throw new NullReferenceException();
-
-         var funGeom = new rm2UfunGeom();
-         funGeom.ptList = pointList;
-         funGeom.expType = geomType;
-
-         funGeomList.Add(funGeom);
       }
 
       private static bool selectedElementsAreValidForPromotion(BCOM.Application app)

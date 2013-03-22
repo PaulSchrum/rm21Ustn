@@ -149,6 +149,7 @@
     <Compile Include="rm21UstnLocateCmd.cs" />
     <Compile Include="rm21UstnPlacementCmd.cs" />
     <Compile Include="Horizontal\rm2UhorizontalAlignments.cs" />
+    <Compile Include="rm2Ubase.cs" />
     <Compile Include="rm2Uelement\rm2Uarc.cs" />
     <Compile Include="rm2Uelement\rm2Uelement.cs" />
     <Compile Include="rm2Uelement\rm2UelementFactory.cs" />

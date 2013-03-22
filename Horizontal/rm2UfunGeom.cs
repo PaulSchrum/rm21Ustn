@@ -9,6 +9,15 @@ namespace rm21Ustn.Horizontal
 {
    internal class rm2UfunGeom : IRM21fundamentalGeometry
    {
+      private int deflectionDirection_;
+      public int DeflectionDirection
+      {
+         get {return deflectionDirection_;}
+         set { deflectionDirection_ = (value > 0) ? 1 : -1; }
+      }
+
+      public int getDeflectionSign() { return DeflectionDirection; }
+
       public List<ptsPoint> ptList
       {  get; set; }
 
@@ -33,5 +42,6 @@ namespace rm21Ustn.Horizontal
       {
          return ptList;
       }
+
    }
 }

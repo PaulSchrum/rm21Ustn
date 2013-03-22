@@ -14,7 +14,7 @@ using rm21Ustn.rm2Uelement;
 
 namespace rm21Ustn
 {
-   class rm2UhorizontalAlignments
+   class rm2UhorizontalAlignments : rm2Ubase
    {
       public static void promoteSelectionSetToHA(String requestedName)
       {
@@ -52,7 +52,7 @@ namespace rm21Ustn
          if (null == rm21Ustn.MyAddin.rm21UstnProject) rm21Ustn.MyAddin.rm21UstnProject = new rm2Uproject();
 
          // throws HorzontalAlignment_NameAlreadyExists
-         rm21Ustn.MyAddin.rm21UstnProject.AddUnaffiliatedHA(newHA, name, selectionSet);
+         proj.AddUnaffiliatedHA(newHA, name, selectionSet);
       }
 
       private static rm21HorizontalAlignment CreateRm21HA(List<rm2Upath> selectionSet, string name)

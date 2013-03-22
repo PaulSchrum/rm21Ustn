@@ -34,10 +34,10 @@ namespace rm21Ustn.rm2Uelement
             returnItem.expType = ptsCogo.Horizontal.expectedType.ArcSegmentInsideSolution;
          else if (Math.Abs(ptsAngle.degreesFromRadians(Arc.SweepAngle)) > 180.0)
             returnItem.expType = ptsCogo.Horizontal.expectedType.ArcSegmentOutsideSoluion;
-         else if (Arc.SweepAngle > 0.0)
-            returnItem.expType = ptsCogo.Horizontal.expectedType.ArcHalfCircleDeflectingLeft;
          else
-            returnItem.expType = ptsCogo.Horizontal.expectedType.ArcHalfCircleDeflectingRight;
+            returnItem.expType = ptsCogo.Horizontal.expectedType.ArcHalfCircle;
+
+         returnItem.DeflectionDirection = -1 * Math.Sign(Arc.SweepAngle);
 
          return returnItem;
       }

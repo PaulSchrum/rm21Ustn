@@ -46,7 +46,7 @@ namespace rm21Ustn
 
          var selectionSet = rm2Uelements.returnOnlyPathElements(
             rm2Uelements.convertElEnumToRm2UList(app.ActiveModelReference.GetSelectedElements()));
-         if (selectionSet.Count > 1) throw new NotImplementedException();
+         
          rm21HorizontalAlignment newHA = CreateRm21HA(selectionSet, name);
 
          if (null == rm21Ustn.MyAddin.rm21UstnProject) rm21Ustn.MyAddin.rm21UstnProject = new rm2Uproject();

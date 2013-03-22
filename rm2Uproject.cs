@@ -48,9 +48,6 @@ namespace rm21Ustn
          public rm21HorizontalAlignment rm21HA;
       }
 
-
-
-
       internal void AddUnaffiliatedHA(rm21HorizontalAlignment newHA, string name, List<rm2Upath> selectionSet)
       {
          validateNameForUnaffiliatedHA(name);  // may throw HorzontalAlignment_NameAlreadyExists.
@@ -58,7 +55,8 @@ namespace rm21Ustn
          var haBridgeEntry = new rm2UbridgeHAs();
          haBridgeEntry.rm21HA = newHA;
          haBridgeEntry.Name = name;
-         haBridgeEntry.namedGroup = CreateHA_NamedGroup(name, selectionSet);
+         if(null != selectionSet)
+            haBridgeEntry.namedGroup = CreateHA_NamedGroup(name, selectionSet);
          if (null == haBridgeEntry) return;  // failed.  dont know why.
 
          if (null == horizAlignmentSoftBridge) horizAlignmentSoftBridge = new List<rm2UbridgeHAs>();

@@ -16,6 +16,7 @@
 
 using Bentley.Interop.MicroStationDGN;
 using Bentley.MicroStation.Application;
+using ptsCogo.Horizontal;
 using rm21Ustn.Utilities;
 using System;
 using System.Collections.Generic;
@@ -57,9 +58,37 @@ namespace rm21Ustn
          this.UnloadedEvent += new UnloadedEventHandler(rm21Ustn_UnloadedEvent);
 
          //rm21UstnProject = new rm2Uproject();
-         getTopLevelRM21NG(s_comApp.ActiveModelReference);
+         rm2UDeserializeProjectFromUstn();
 
          return 0;
+      }
+
+      private void rm2UDeserializeProjectFromUstn()
+      {
+         List<String> nameList = new List<string>();
+         var namedGroups = getAllRM21NamedGroups(s_comApp.ActiveModelReference, nameList);
+
+         foreach(var namedGroup in namedGroups)
+         {
+            var parsed = namedGroup.Name.Split(':');
+            if (parsed[0] != "RM21") continue;
+            if (parsed[1].Length == 0)
+            {
+               addUnafilliatedHAtoProject(namedGroup, parsed[2]);
+            }
+         }
+      }
+
+      private void addUnafilliatedHAtoProject(NamedGroupElement namedGroup, string HAname)
+      {
+         rm21HorizontalAlignment newHA = rm2UhorizontalAlignments.CreateRm21HA(
+            rm2Uelements.returnOnlyPathElements(rm2Uelements.convertElEnumToRm2UList(namedGroup.GetElements(true))), 
+            HAname);
+
+         if (null == rm21Ustn.MyAddin.rm21UstnProject) rm21Ustn.MyAddin.rm21UstnProject = new rm2Uproject();
+
+         // throws HorzontalAlignment_NameAlreadyExists
+         rm21UstnProject.AddUnaffiliatedHA(newHA, HAname, null);
       }
 
       /// <summary>Static property that the rest of the application uses 
@@ -90,31 +119,42 @@ namespace rm21Ustn
          base.OnUnloading (eventArgs);
       }
 
-      private Bentley.Internal.MicroStation.NamedGroup getTopLevelRM21NG(BCOM.ModelReference modelReference)
-      {  // toy code for research only
+      private List<BCOM.NamedGroupElement> getAllRM21NamedGroups(BCOM.ModelReference modelReference, List<String> nameList)
+      {
+         var returnList = getAllRM21NamedGroupPerModel(modelReference);
+         var otherList = new List<BCOM.NamedGroupElement>();
+
+
+         foreach (Attachment refFile in modelReference.Attachments)
+         {
+            var refAsModelRef = ComApp.MdlGetModelReferenceFromModelRefP(refFile.MdlModelRefP());
+            otherList.AddRange(getAllRM21NamedGroups(refAsModelRef, nameList));
+         }
+
+         returnList.AddRange(otherList);
+         return returnList;
+      }
+
+      private List<BCOM.NamedGroupElement> getAllRM21NamedGroupPerModel(BCOM.ModelReference modelReference)
+      {
+         List<BCOM.NamedGroupElement> returnList = new List<BCOM.NamedGroupElement>();
          ElementScanCriteria scanCriteria = new ElementScanCriteriaClass();
-         //scanCriteria.ExcludeNonGraphical();
          scanCriteria.ExcludeAllTypes();
          //scanCriteria_IncludeAllGraphicalTypesOfInterest(scanCriteria);
          scanCriteria.IncludeType(MsdElementType.NamedGroupHeader);
          scanCriteria.IncludeType(MsdElementType.NamedGroupComponent);
          
-
-         System.Console.WriteLine("Test");
          ElementEnumerator elEnum = modelReference.Scan(scanCriteria);
-
          List<Utilities.rm2UElementTypeTuple> elList = rm2Uelements.convertElEnumToTupleList(elEnum);
 
          foreach (var el in elList)
          {
-            string hi = el.element.ToString();
             NamedGroupElement nge = el.element.AsNamedGroupElement();
-            hi = nge.Name;
-            MessageCenter.StatusMessage = el.element.ToString();
+            if("RM21:" == nge.Name.Substring(0,5))
+               returnList.Add(nge);
          }
-         //Note: This partial development is suspended for the time being.
-         //   return here when ready to proceed with EU2, open a dgn file with rm21 peristance.
-         return null;
+
+         return returnList;
       }
 
       private void scanCriteria_IncludeAllGraphicalTypesOfInterest(ElementScanCriteria scanCriteria)

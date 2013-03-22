@@ -142,6 +142,7 @@
     <Compile Include="Exceptions\HorzontalAlignment_NameAlreadyExists.cs" />
     <Compile Include="Horizontal\rm2UfunGeom.cs" />
     <Compile Include="KeyinCommands.cs" />
+    <Compile Include="NamedGroupElement.cs" />
     <Compile Include="rm21Ustn.cs" />
     <Compile Include="rm21Ustnform.cs">
       <SubType>Form</SubType>

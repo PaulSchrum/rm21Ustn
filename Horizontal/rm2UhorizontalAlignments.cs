@@ -41,9 +41,6 @@ namespace rm21Ustn
       {
          if (null == app) throw new ArgumentNullException();
 
-         //BCOM.ElementEnumerator selectionSet = app.ActiveModelReference.GetSelectedElements();
-         //var ssElements = selectionSet.BuildArrayFromContents().ToList<Element>();
-
          var selectionSet = rm2Uelements.returnOnlyPathElements(
             rm2Uelements.convertElEnumToRm2UList(app.ActiveModelReference.GetSelectedElements()));
          
@@ -55,10 +52,10 @@ namespace rm21Ustn
          proj.AddUnaffiliatedHA(newHA, name, selectionSet);
       }
 
-      private static rm21HorizontalAlignment CreateRm21HA(List<rm2Upath> selectionSet, string name)
+      internal static rm21HorizontalAlignment CreateRm21HA(List<rm2Upath> elementsToCreateFrom, string name)
       {
          List<IRM21fundamentalGeometry> funGeometryList = new List<IRM21fundamentalGeometry>();
-         foreach (var element in selectionSet)
+         foreach (var element in elementsToCreateFrom)
          {
             rm2UfunGeom funGeomItem = element.getAsFundamentalGeometry();
             if (null != funGeomItem)

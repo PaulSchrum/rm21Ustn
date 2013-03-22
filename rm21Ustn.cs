@@ -76,6 +76,7 @@ namespace rm21Ustn
             {
                addUnafilliatedHAtoProject(namedGroup, parsed[2]);
             }
+            // to later do: handle corridors
          }
       }
 

@@ -26,6 +26,11 @@ namespace rm21Ustn
          
       }
 
+      public static void rm21UstnDisplayStationOffsetStartPrimitiveCommand(System.String unparsed)
+      {
+         rm2UhorizontalAlignments.displayStationOffsetStartPrimitive(unparsed);
+      }
+
       public static void rm21UstnPromoteElementsToHA(System.String unparsed)
       {
          rm2UhorizontalAlignments.promoteSelectionSetToHA((unparsed.Split(' '))[0]);

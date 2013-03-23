@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Bentley.Interop.MicroStationDGN;
 
 namespace rm21Ustn
 {
    public class rm2Ubase
    {
+      internal static Application app
+      {
+         get { return Bentley.MicroStation.InteropServices.Utilities.ComApp; }
+         private set { }
+      }
+
       internal static rm21Ustn myAdIn
       {
          get { return rm21Ustn.MyAddin; }

@@ -11,11 +11,19 @@ using rm21Ustn.Utilities;
 using ptsCogo.Horizontal;
 using rm21Ustn.Horizontal;
 using rm21Ustn.rm2Uelement;
+using rm21Ustn.rm2UprimitiveCommands;
 
 namespace rm21Ustn
 {
    class rm2UhorizontalAlignments : rm2Ubase
    {
+      public static void displayStationOffsetStartPrimitive(String inputString)
+      {
+         rm2UdisplayStationOffset displaySOdynamically = new rm2UdisplayStationOffset();
+         app.CommandState.StartPrimitive(displaySOdynamically, false);
+         app.CommandState.StartDynamics();
+      }
+
       public static void promoteSelectionSetToHA(String requestedName)
       {
          BCOM.Application app = BMI.Utilities.ComApp;

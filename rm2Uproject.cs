@@ -39,6 +39,17 @@ namespace rm21Ustn
          rm21CoreProject = new RM21Project();
       }
 
+      private rm21HorizontalAlignment getUnaffiliatedHorizontalAlignment(String name)
+      {
+         String nameToSearchFor = "RM21::" + name;
+         foreach (var item in horizAlignmentSoftBridge)
+         {
+            if (item.namedGroup.Name == nameToSearchFor)
+               return item.rm21HA;
+         }
+         return null;
+      }
+
       private class rm2UbridgeCorridors { }
       
       private class rm2UbridgeHAs
@@ -90,7 +101,11 @@ namespace rm21Ustn
          }
       }
 
-
+      public List<rm21HorizontalAlignment> getAllHorizontalAlignments()
+      {
+         return (from brItem in horizAlignmentSoftBridge
+                       select brItem.rm21HA).ToList();
+      }
 
       public String getNamedGroupNameForUnaffiliatedHA(String inputName)
       {

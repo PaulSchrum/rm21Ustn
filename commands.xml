@@ -24,6 +24,7 @@
             <Keyword CommandWord="Place"> </Keyword>
             <Keyword CommandWord="Promote"> </Keyword>
             <Keyword CommandWord="Locate"> </Keyword>
+            <Keyword CommandWord="DisplayStationOffset"> </Keyword>
         </KeyinTable>
 
     </SubKeyinTables>
@@ -36,8 +37,10 @@
             Function="rm21Ustn.KeyinCommands.rm21UstnPlacementCommand"/>
         <KeyinHandler Keyin="rm21 PROMOTE" 
             Function="rm21Ustn.KeyinCommands.rm21UstnPromoteElementsToHA"/>
-        <KeyinHandler Keyin="rm21 LOCATE" 
+        <KeyinHandler Keyin="rm21 LOCATE"
             Function="rm21Ustn.KeyinCommands.rm21UstnLocateCommand"/>
+        <KeyinHandler Keyin="rm21 DISPLAYSTATIONOFFSET"
+            Function="rm21Ustn.KeyinCommands.rm21UstnDisplayStationOffsetStartPrimitiveCommand"/>
     </KeyinHandlers>
 
 

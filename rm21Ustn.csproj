@@ -160,6 +160,8 @@
     <Compile Include="rm2Uelement\rm2UlineSegment.cs" />
     <Compile Include="rm2Uelement\rm2UNamedGroup.cs" />
     <Compile Include="rm2Uelement\rm2Upath.cs" />
+    <Compile Include="rm2UprimitiveCommands\rm2UdisplayStationOffset.cs" />
+    <Compile Include="rm2UprimitiveCommands\rm2UprimitiveCommandBase.cs" />
     <Compile Include="rm2Uproject.cs" />
     <Compile Include="Utilities\rm2Uelements.cs" />
     <Compile Include="Utilities\rm2Upoint.cs" />

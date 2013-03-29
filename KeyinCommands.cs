@@ -26,6 +26,11 @@ namespace rm21Ustn
          
       }
 
+      public static void rm21UstnIssueDPstationOffset(System.String unparsed)
+      {
+         rm2UhorizontalAlignments.issueDPstationOffset(unparsed);
+      }
+
       public static void rm21UstnDisplayStationOffsetStartPrimitiveCommand(System.String unparsed)
       {
          rm2UhorizontalAlignments.displayStationOffsetStartPrimitive(unparsed);

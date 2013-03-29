@@ -14,7 +14,7 @@ namespace rm21Ustn.Utilities
          return new ptsPoint(pt.X, pt.Y, pt.Z);
       }
 
-      public Point3d CreateUstnPoint(ptsPoint pts)
+      public static Point3d CreateUstnPoint(ptsPoint pts)
       {
          Point3d returnPoint;
          returnPoint.X = pts.x; returnPoint.Y = pts.y;

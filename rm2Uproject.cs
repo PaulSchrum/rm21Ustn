@@ -39,12 +39,12 @@ namespace rm21Ustn
          rm21CoreProject = new RM21Project();
       }
 
-      private rm21HorizontalAlignment getUnaffiliatedHorizontalAlignment(String name)
+      public rm21HorizontalAlignment getUnaffiliatedHorizontalAlignment(String name)
       {
          String nameToSearchFor = "RM21::" + name;
          foreach (var item in horizAlignmentSoftBridge)
          {
-            if (item.namedGroup.Name == nameToSearchFor)
+            if (item.Name == name)
                return item.rm21HA;
          }
          return null;

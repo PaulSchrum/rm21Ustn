@@ -17,6 +17,32 @@ namespace rm21Ustn
 {
    class rm2UhorizontalAlignments : rm2Ubase
    {
+      public static void issueDPstationOffset(String inputString)
+      {
+         var parsedInput = inputString.Split(' ');
+         var HA = proj.getUnaffiliatedHorizontalAlignment(parsedInput[0]);
+         if (null == HA) return;
+
+         Double station=0.0;
+         if (Double.TryParse(parsedInput[1], out station) == false)
+            return;
+
+         Double offset=0.0;
+         if (Double.TryParse(parsedInput[2], out offset) == false)
+            return;
+
+         var thePoint = HA.getXYZcoordinates(station, offset, 0.0);
+         Point3d thePt = Utilities.rm2Upoint.CreateUstnPoint(thePoint);
+
+         // technical debt: figure out what is wrong with SendDataPoint and use that.
+         app.CadInputQueue.SendKeyin("xy=" + thePt.X.ToString() + "," + thePt.Y.ToString());
+         //try { app.CadInputQueue.SendDataPoint(ref thePt); }
+         //catch (Exception e)
+         //{
+         //   int i = 0;
+         //}
+      }
+
       public static void displayStationOffsetStartPrimitive(String inputString)
       {
          rm2UdisplayStationOffset displaySOdynamically = new rm2UdisplayStationOffset();

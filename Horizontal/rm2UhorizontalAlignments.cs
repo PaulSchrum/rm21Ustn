@@ -75,9 +75,10 @@ namespace rm21Ustn
       {
          if (null == app) throw new ArgumentNullException();
 
-         var selectionSet = rm2Uelements.returnOnlyPathElements(
-            rm2Uelements.convertElEnumToRm2UList(app.ActiveModelReference.GetSelectedElements()));
-         
+         //var selectionSet = rm2Uelements.returnOnlyPathElements(
+         //   rm2Uelements.convertElEnumToRm2UList(app.ActiveModelReference.GetSelectedElements()));
+         var selectionSet = rm2Uelements.getSelectedPathElements();
+
          rm21HorizontalAlignment newHA = CreateRm21HA(selectionSet, name);
 
          if (null == rm21Ustn.MyAddin.rm21UstnProject) rm21Ustn.MyAddin.rm21UstnProject = new rm2Uproject();

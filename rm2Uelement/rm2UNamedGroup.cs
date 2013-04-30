@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BCOM = Bentley.Interop.MicroStationDGN;
+using rm21Ustn.Utilities;
 
 namespace rm21Ustn.rm2Uelement
 {
@@ -51,5 +52,18 @@ namespace rm21Ustn.rm2Uelement
 
          return returnList;
       }
+
+      public static bool isRM21UnaffiliatedHAnamedGroup(NamedGroupElement nge)
+      {
+         String keyString = "RM21::";
+         return nge.Name.StartsWith(keyString);
+      }
+
+      public static bool isRM21NamedGroup(NamedGroupElement nge)
+      {
+         String keyString = "RM21:";
+         return nge.Name.StartsWith(keyString);
+      }
+
    }
 }

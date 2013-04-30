@@ -17,5 +17,22 @@ namespace rm21Ustn.rm2Uelement
          get { return (TextNodeElement)el; }
          private set { }
       }
+
+      public override String getTextValue()
+      {
+         var textNode = (el as TextNodeElement);
+         StringBuilder returnList = new StringBuilder();
+
+         int i;
+         for (i = 0; i < textNode.TextLinesCount; i++)
+         {
+            if (i > 0)
+               returnList.Append(System.Environment.NewLine);
+
+            returnList.Append (textNode.get_TextLine(i));
+         }
+
+         return returnList.ToString();
+      }
    }
 }

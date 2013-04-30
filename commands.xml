@@ -26,6 +26,7 @@
             <Keyword CommandWord="Locate"> </Keyword>
             <Keyword CommandWord="DisplayStationOffset"> </Keyword>
             <Keyword CommandWord="IssueDPstationOffset"> </Keyword>
+            <Keyword CommandWord="CreateNewCorridor"> </Keyword>
         </KeyinTable>
 
     </SubKeyinTables>
@@ -44,6 +45,8 @@
             Function="rm21Ustn.KeyinCommands.rm21UstnDisplayStationOffsetStartPrimitiveCommand"/>
         <KeyinHandler Keyin="rm21 ISSUEDPSTATIONOFFSET"
             Function="rm21Ustn.KeyinCommands.rm21UstnIssueDPstationOffset"/>
+        <KeyinHandler Keyin="rm21 CREATENEWCORRIDOR"
+            Function="rm21Ustn.KeyinCommands.rm21UstnCreateNewCorridor"/>
     </KeyinHandlers>
 
 

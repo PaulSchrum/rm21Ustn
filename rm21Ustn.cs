@@ -58,6 +58,7 @@ namespace rm21Ustn
          this.UnloadedEvent += new UnloadedEventHandler(rm21Ustn_UnloadedEvent);
 
          //rm21UstnProject = new rm2Uproject();
+         if (null == rm21Ustn.MyAddin.rm21UstnProject) rm21Ustn.MyAddin.rm21UstnProject = new rm2Uproject();
          rm2UDeserializeProjectFromUstn();
 
          return 0;
@@ -118,6 +119,7 @@ namespace rm21Ustn
       {
          //  CellControl.CloseForm ();
          base.OnUnloading (eventArgs);
+         eventArgs.ResponseCode = UnloadingEventArgs.Response.UnloadProceed;
       }
 
       private List<BCOM.NamedGroupElement> getAllRM21NamedGroups(BCOM.ModelReference modelReference, List<String> nameList)

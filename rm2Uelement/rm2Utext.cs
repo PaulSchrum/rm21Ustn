@@ -17,5 +17,12 @@ namespace rm21Ustn.rm2Uelement
          get { return (TextElement)el; }
          private set { }
       }
+
+      public override String getTextValue()
+      {
+         var textEL = (el as TextElement);
+
+         return textEL.Text;
+      }
    }
 }

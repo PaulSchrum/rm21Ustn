@@ -8,6 +8,7 @@
 |
 +--------------------------------------------------------------------------------------*/
 
+using rm21Ustn.Corridor;
 using System;
 using System.Collections.Generic;
 using BCOM = Bentley.Interop.MicroStationDGN;
@@ -39,6 +40,11 @@ namespace rm21Ustn
       public static void rm21UstnPromoteElementsToHA(System.String unparsed)
       {
          rm2UhorizontalAlignments.promoteSelectionSetToHA((unparsed.Split(' '))[0]);
+      }
+
+      public static void rm21UstnCreateNewCorridor(System.String unparsed)
+      {
+         rm2Ucorridor.CreateNewCorridor(unparsed);
       }
 
       public static void rm21UstnPlacementCommand(System.String unparsed)

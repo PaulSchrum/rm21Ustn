@@ -22,6 +22,12 @@ namespace rm21Ustn.rm2Uelement
          if (true == el.IsArcElement())
             return new rm2Uarc(el);
 
+         if (true == el.IsTextElement())
+            return new rm2Utext(el);
+
+         if (true == el.IsTextNodeElement())
+            return new rm2UtextNode(el);
+
          return null;
       }
    }

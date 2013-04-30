@@ -8,9 +8,17 @@ namespace rm21Ustn.rm2Uelement
 {
    public abstract class rm2UtextBase : rm2UgraphicalElement
    {
-      public rm2UtextBase() : base() { }
+      public rm2UtextBase() : base() 
+      {
+      }
 
-      public rm2UtextBase(Element el) : base(el) { }
+      public rm2UtextBase(Element el) : base(el) 
+      {
+      }
 
+      public virtual String getTextValue()
+      {
+         return null;
+      }
    }
 }

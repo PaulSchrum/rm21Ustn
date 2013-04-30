@@ -41,6 +41,22 @@ namespace rm21Ustn.Utilities
          return returnList;
       }
 
+      public static List<rm2Upath> convertElEnumToPathList(ElementEnumerator elEnum)
+      {
+         var tempList = convertElEnumToRm2UList(elEnum);
+         if (null == tempList) return null;
+         if (tempList.Count == 0) return null;
+         List<rm2Upath> returnList = new List<rm2Upath>();
+         foreach (var el in tempList)
+         {
+            if(el is rm2Upath)
+               returnList.Add((rm2Upath) el);
+         }
+         if(returnList.Count == 0)
+            returnList = null;
+         return returnList;
+      }
+
       public static List<rm2UgraphicalElement> convertElEnumToRm2UList(ElementEnumerator elEnum)
       {
          if (null == elEnum) return null;
@@ -87,6 +103,13 @@ namespace rm21Ustn.Utilities
          if (returnList.Count == 0) returnList = null;
          return returnList;
       }
+
+      internal static List<rm2Upath> getSelectedPathElements()
+      {
+         return rm2Uelements.returnOnlyPathElements(
+            rm2Uelements.convertElEnumToRm2UList(BMI.Utilities.ComApp.ActiveModelReference.GetSelectedElements()));
+      }
+
    }
 
    public class rm2UElementTypeTuple

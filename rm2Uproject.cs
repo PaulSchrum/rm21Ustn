@@ -185,6 +185,7 @@ namespace rm21Ustn
                {
                   ng.Name = getNamedGroupNameForCorridor(newCorridor.Name);
                   ng.Rewrite();
+                  newCordrBridge.namedGroup = ng;
                   shouldCreateNewNG = false;
                   break;
                }
@@ -196,7 +197,7 @@ namespace rm21Ustn
             newCordrBridge.namedGroup = CreateCorridor_NamedGroup(newCorridor.Name, governingAlignmentElements);
          }
 
-         // Technical Debt: What happens when the lane and ep lines are in a different dgn model
+         // Todo: Technical Debt: What happens when the lane and ep lines are in a different dgn model
          //    from a referenced unaffiliated HA?  We have to handle this scenario.
       }
 

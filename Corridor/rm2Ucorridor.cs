@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace rm21Ustn.Corridor
 {
@@ -64,7 +65,9 @@ namespace rm21Ustn.Corridor
             proj.AddCorridor(newCorridor, theHA.Value);
 
             // TODO: CreateNewCorridor technical debt: handle typicalSectionName2
-            //extrudeTypicalSections(newCorridor, typicalSectionName1);
+            extrudeTypicalSections(newCorridor, typicalSectionName1);
+
+            //newCorridor.PersistantDraw(PersistantDrawingClassOrDelegate);
          }
 
       }
@@ -83,8 +86,11 @@ namespace rm21Ustn.Corridor
          PGLGrouping pglGrLT = new PGLGrouping(-1);
          PGLGrouping pglGrRT = new PGLGrouping(1);
 
+         newCorridor.addPGLgrouping(pglGrLT);
+         newCorridor.addPGLgrouping(pglGrRT);
+         
          pglGrRT.addOutsideRibbon(new RoadwayLane(pglGrRT, 10.0, new Slope(0.02)));
-         pglGrLT.addOutsideRibbon(new RoadwayLane(pglGrRT, 20.0, new Slope(0.10)));
+         pglGrLT.addOutsideRibbon(new RoadwayLane(pglGrLT, 20.0, new Slope(0.10)));
       }
    }
 }

@@ -14,6 +14,12 @@ namespace rm21Ustn
          private set { }
       }
 
+      internal static ModelReference activeModelRef
+      {
+         get { return Bentley.MicroStation.InteropServices.Utilities.ComApp.ActiveModelReference; }
+         private set { }
+      }
+
       internal static rm21Ustn myAdIn
       {
          get { return rm21Ustn.MyAddin; }

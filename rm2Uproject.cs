@@ -1,7 +1,6 @@
 ﻿using BMW=Bentley.MicroStation.WinForms;
 using BMI=Bentley.MicroStation.InteropServices;
 using BCOM=Bentley.Interop.MicroStationDGN;
-using rm21Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -167,7 +166,7 @@ namespace rm21Ustn
          return;
       }
 
-      internal void AddCorridor(rm21Core.rm21Corridor newCorridor, List<rm2Upath> governingAlignmentElements)
+      internal void AddCorridor(rm21Corridor newCorridor, List<rm2Upath> governingAlignmentElements)
       {
          bool shouldCreateNewNG = true;
          if (null == corridorsBridge) corridorsBridge = new List<rm2UbridgeCorridors>();

@@ -11,6 +11,7 @@
 using rm21Ustn.Corridor;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using BCOM = Bentley.Interop.MicroStationDGN;
 using BMI = Bentley.MicroStation.InteropServices;
 
@@ -44,7 +45,26 @@ namespace rm21Ustn
 
       public static void rm21UstnCreateNewCorridor(System.String unparsed)
       {
-         rm2Ucorridor.CreateNewCorridor(unparsed);
+         //try 
+         //{ 
+            rm2Ucorridor.CreateNewCorridor(unparsed); 
+         //}
+         //catch (Exception e)
+         //{
+         //   if (e is ArgumentNullException)
+         //   {
+         //      Debugger.Break();
+         //   }
+         //   else if (e is NullReferenceException)
+         //   {
+         //      Debugger.Break();
+         //   }
+         //   else
+         //   {
+         //      Debugger.Break();
+         //   }
+         //   throw e;
+         //}
       }
 
       public static void rm21UstnPlacementCommand(System.String unparsed)

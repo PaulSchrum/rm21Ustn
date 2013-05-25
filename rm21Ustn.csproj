@@ -108,7 +108,7 @@
     </Reference>
     <Reference Include="rm21Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\RM21SourceCore\rm21Core\bin\Debug\rm21Core.dll</HintPath>
+      <HintPath>..\..\RM21SourceCore\rm21Core\bin\Release\rm21Core.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -143,6 +143,7 @@
     <Compile Include="CodeBridge\rm2UcodeBridgeHorizontalAlignment.cs" />
     <Compile Include="CodeBridge\rm2UCodeBridgeMemberBase.cs" />
     <Compile Include="Corridor\rm2Ucorridor.cs" />
+    <Compile Include="DrawAndPersist\DrawAndPersist.cs" />
     <Compile Include="Exceptions\HorzontalAlignment_NameAlreadyExists.cs" />
     <Compile Include="Horizontal\rm2UfunGeom.cs" />
     <Compile Include="KeyinCommands.cs" />

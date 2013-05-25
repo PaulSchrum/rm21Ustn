@@ -1,6 +1,6 @@
 ﻿using ptsCogo.Angle;
 using ptsCogo.Horizontal;
-using rm21Core;
+//using rm21Core;
 using rm21Ustn.rm2Uelement;
 using rm21Ustn.Utilities;
 using System;
@@ -8,14 +8,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
+using ptsCogo;
+using ptsCogo.CorridorTypes;
+using rm21Ustn.DrawAndPersist;
 
 namespace rm21Ustn.Corridor
 {
    public class rm2Ucorridor : rm2Ubase
    {
+      
 
       internal static void CreateNewCorridor(string unparsed)
       {
+         IPersistantDrawer drawAndPersist = new DrawAndPersist.DrawAndPersist();
          bool shouldRemoveHAfromUnaffiliatedList = false;
          String corridorName = "";
          String typicalSectionName1 = "";
@@ -34,7 +39,9 @@ namespace rm21Ustn.Corridor
          if (null == selectedPathElements)
          {
             rm21HorizontalAlignment anHA = proj.getUnaffiliatedHorizontalAlignment(corridorName);
+            if (null == anHA) return;
             List<rm2Upath> constiuentElements = rm2Upath.getDGNelementsByHAname(corridorName);
+            if (null == constiuentElements) return;
             theseHAs.Add(anHA, constiuentElements);
             shouldRemoveHAfromUnaffiliatedList = true;
          }
@@ -56,7 +63,7 @@ namespace rm21Ustn.Corridor
 
          foreach (var theHA in theseHAs)
          {
-            var newCorridor = new rm21Core.CorridorTypes.rm21OpenChannelCorridor(corridorName);
+            var newCorridor = new rm21OpenChannelCorridor(corridorName);
             // TODO: CreateNewCorridor technical debt: handle case where this name already exists
             newCorridor.GoverningAlignment = theHA.Key;
             if (true == shouldRemoveHAfromUnaffiliatedList)
@@ -67,12 +74,12 @@ namespace rm21Ustn.Corridor
             // TODO: CreateNewCorridor technical debt: handle typicalSectionName2
             extrudeTypicalSections(newCorridor, typicalSectionName1);
 
-            //newCorridor.PersistantDraw(PersistantDrawingClassOrDelegate);
+            newCorridor.PersistantDraw(drawAndPersist);
          }
 
       }
 
-      internal static void extrudeTypicalSections(rm21Core.rm21Corridor newCorridor, 
+      internal static void extrudeTypicalSections(rm21Corridor newCorridor, 
          String typicalSections)
       {
          if (null == newCorridor) throw new NullReferenceException("newCorridor");
@@ -81,7 +88,7 @@ namespace rm21Ustn.Corridor
          tempTestingBuildSimpleCorridor(newCorridor);
       }
 
-      private static void tempTestingBuildSimpleCorridor(rm21Core.rm21Corridor newCorridor)
+      private static void tempTestingBuildSimpleCorridor(rm21Corridor newCorridor)
       {
          PGLGrouping pglGrLT = new PGLGrouping(-1);
          PGLGrouping pglGrRT = new PGLGrouping(1);

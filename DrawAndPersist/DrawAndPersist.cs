@@ -16,6 +16,13 @@ namespace rm21Ustn.DrawAndPersist
       // todo: DrawAndPersist technical debt: Does not yet assign RM21 named group stuff.
       // todo: DrawAndPersist technical debt: Does not yet place cross slope elements.
 
+      public rm21Feature featureSymbology { get; protected set; }
+
+      public void setCaddSymbologyForRibbon(rm21Feature feature)
+      {
+         featureSymbology = feature;
+      }
+
       public void PlaceArc(rm21HorArc arc, 
          ptsPoint startPoint, StationOffsetElevation startSOE, 
          ptsPoint endPoint, StationOffsetElevation endSOE)
@@ -61,5 +68,6 @@ namespace rm21Ustn.DrawAndPersist
 
          //rm21GoverningElement.
       }
+
    }
 }

@@ -10,6 +10,7 @@ using System.Text;
 using System.Diagnostics;
 using ptsCogo;
 using ptsCogo.CorridorTypes;
+using ptsCogo.Ribbons;
 using rm21Ustn.DrawAndPersist;
 
 namespace rm21Ustn.Corridor
@@ -66,10 +67,10 @@ namespace rm21Ustn.Corridor
             var newCorridor = new rm21OpenChannelCorridor(corridorName);
             // TODO: CreateNewCorridor technical debt: handle case where this name already exists
             newCorridor.GoverningAlignment = theHA.Key;
-            if (true == shouldRemoveHAfromUnaffiliatedList)
-               proj.removeFromHAlist(corridorName);
+            //if (true == shouldRemoveHAfromUnaffiliatedList)
+               //proj.removeFromHAlist(corridorName);
 
-            proj.AddCorridor(newCorridor, theHA.Value);
+            //proj.AddCorridor(newCorridor, theHA.Value);
 
             // TODO: CreateNewCorridor technical debt: handle typicalSectionName2
             extrudeTypicalSections(newCorridor, typicalSectionName1);
@@ -95,9 +96,15 @@ namespace rm21Ustn.Corridor
 
          newCorridor.addPGLgrouping(pglGrLT);
          newCorridor.addPGLgrouping(pglGrRT);
-         
-         pglGrRT.addOutsideRibbon(new RoadwayLane(pglGrRT, 10.0, new Slope(0.02)));
-         pglGrLT.addOutsideRibbon(new RoadwayLane(pglGrLT, 20.0, new Slope(0.10)));
+
+         pglGrLT.addOutsideRibbon(new RoadwayLane(pglGrLT, 12.0, new Slope(-0.02)));
+         pglGrLT.addOutsideRibbon(new RoadwayLane(pglGrLT, 12.0, new Slope(-0.02)));
+         pglGrLT.addOutsideRibbon(new Shoulder(pglGrLT, 8.0, new Slope(-0.08)));
+
+         pglGrRT.addOutsideRibbon(new RoadwayLane(pglGrRT, 12.0, new Slope(-0.02)));
+         pglGrRT.addOutsideRibbon(new RoadwayLane(pglGrRT, 12.0, new Slope(-0.02)));
+         pglGrRT.addOutsideRibbon(new Shoulder(pglGrRT, 8.0, new Slope(-0.08)));
+
       }
    }
 }

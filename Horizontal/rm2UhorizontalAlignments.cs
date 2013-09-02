@@ -50,6 +50,16 @@ namespace rm21Ustn
          app.CommandState.StartDynamics();
       }
 
+      public static void placeHAinteractively(String requestedName)
+      {
+         if (true == doesHAofThisNameExist(requestedName))
+            throw new Exception("HA of this name already exists.  Alignment not created.");
+
+         rm2UplaceHAcommand placeHAinterative = new rm2UplaceHAcommand();
+         app.CommandState.StartPrimitive(placeHAinterative, WantKeyins: true);
+
+      }
+
       public static void promoteSelectionSetToHA(String requestedName)
       {
          BCOM.Application app = BMI.Utilities.ComApp;

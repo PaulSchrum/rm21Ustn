@@ -27,6 +27,7 @@
             <Keyword CommandWord="DisplayStationOffset"> </Keyword>
             <Keyword CommandWord="IssueDPstationOffset"> </Keyword>
             <Keyword CommandWord="CreateNewCorridor"> </Keyword>
+            <Keyword CommandWord="PlaceHAinteractive"> </Keyword>
         </KeyinTable>
 
     </SubKeyinTables>
@@ -47,6 +48,8 @@
             Function="rm21Ustn.KeyinCommands.rm21UstnIssueDPstationOffset"/>
         <KeyinHandler Keyin="rm21 CREATENEWCORRIDOR"
             Function="rm21Ustn.KeyinCommands.rm21UstnCreateNewCorridor"/>
+        <KeyinHandler Keyin="rm21 PLACEHAINTERACTIVE"
+            Function="rm21Ustn.KeyinCommands.rm21UstnPlaceHAinteractive"/>
     </KeyinHandlers>
 
 

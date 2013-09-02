@@ -169,6 +169,7 @@
     <Compile Include="rm2Uelement\rm2UtextBase.cs" />
     <Compile Include="rm2Uelement\rm2UtextNode.cs" />
     <Compile Include="rm2UprimitiveCommands\rm2UdisplayStationOffset.cs" />
+    <Compile Include="rm2UprimitiveCommands\rm2UplaceHAcommand.cs" />
     <Compile Include="rm2UprimitiveCommands\rm2UprimitiveCommandBase.cs" />
     <Compile Include="rm2Uproject.cs" />
     <Compile Include="Utilities\rm2Uelements.cs" />

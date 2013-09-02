@@ -9,6 +9,7 @@
 +--------------------------------------------------------------------------------------*/
 
 using rm21Ustn.Corridor;
+using rm21Ustn.rm2UprimitiveCommands;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -65,6 +66,11 @@ namespace rm21Ustn
          //   }
          //   throw e;
          //}
+      }
+
+      public static void rm21UstnPlaceHAinteractive(System.String unparsed)
+      {
+         rm2UhorizontalAlignments.placeHAinteractively("stream");
       }
 
       public static void rm21UstnPlacementCommand(System.String unparsed)

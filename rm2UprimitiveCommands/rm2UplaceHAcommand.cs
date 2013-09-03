@@ -127,7 +127,7 @@ namespace rm21Ustn.rm2UprimitiveCommands
          if(true ==Double.TryParse(Keyin, out newRad))
          {
             this.defaultRadius = newRad;
-            app.ShowPrompt("Radius set to " + newRad.ToString();
+            app.ShowPrompt("Radius set to " + newRad.ToString());
          }
       }
 

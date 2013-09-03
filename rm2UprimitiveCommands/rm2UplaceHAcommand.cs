@@ -22,7 +22,7 @@ namespace rm21Ustn.rm2UprimitiveCommands
 
       public override void Start()
       {
-         defaultRadius = 1170.0;
+         defaultRadius = 117.0;
          internalState = CmdState_.initiate;
          drawingState = DrawingState.temporary;
          dyncounter = 0;
@@ -119,6 +119,22 @@ namespace rm21Ustn.rm2UprimitiveCommands
          {
             throw new Exception("rm21 PlaceHAinteractive: unexpected internal state.");
          }
+      }
+
+      public override void Keyin(string Keyin)
+      {
+         Double newRad;
+         if(true ==Double.TryParse(Keyin, out newRad))
+         {
+            this.defaultRadius = newRad;
+            app.ShowPrompt("Radius set to " + newRad.ToString();
+         }
+      }
+
+      public override void Reset()
+      {
+         newHA.drawPermanent(this);
+         app.CommandState.StartDefaultCommand();
       }
 
       private enum CmdState_

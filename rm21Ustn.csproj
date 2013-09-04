@@ -145,6 +145,12 @@
     <Compile Include="Corridor\rm2Ucorridor.cs" />
     <Compile Include="DrawAndPersist\DrawAndPersist.cs" />
     <Compile Include="Exceptions\HorzontalAlignment_NameAlreadyExists.cs" />
+    <Compile Include="GUI\Forms\HorizontalAlignmentTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Forms\HorizontalAlignmentTable.Designer.cs">
+      <DependentUpon>HorizontalAlignmentTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Horizontal\rm2UfunGeom.cs" />
     <Compile Include="KeyinCommands.cs" />
     <Compile Include="NamedGroupElement.cs" />
@@ -177,6 +183,9 @@
     <Compile Include="Utilities\stringExtensionMethods.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="GUI\Forms\HorizontalAlignmentTable.resx">
+      <DependentUpon>HorizontalAlignmentTable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="rm21Ustnform.resx" />
   </ItemGroup>
   <ItemGroup>

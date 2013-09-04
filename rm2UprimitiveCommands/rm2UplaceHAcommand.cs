@@ -7,6 +7,7 @@ using ptsCogo.Horizontal;
 using rm21Ustn.Utilities;
 using ptsCogo;
 using ptsCogo.Angle;
+using rm21Ustn.GUI.Forms;
 
 namespace rm21Ustn.rm2UprimitiveCommands
 {
@@ -18,6 +19,8 @@ namespace rm21Ustn.rm2UprimitiveCommands
       private ptsCogo.ptsPoint startPt { get; set; }
       private DrawingState drawingState { get; set; }
       private int dyncounter;
+      private frm_HorizontalAlignmentTable HAtable = null;
+      System.Windows.Forms.DataGridView grid = null;
 
 
       public override void Start()
@@ -27,6 +30,9 @@ namespace rm21Ustn.rm2UprimitiveCommands
          drawingState = DrawingState.temporary;
          dyncounter = 0;
          app.ShowPrompt("Data Point to initiate HA placement");
+         HAtable = new frm_HorizontalAlignmentTable();
+         grid = HAtable.Controls["dgv_HorizontalAlignmentElements"] as System.Windows.Forms.DataGridView;
+         HAtable.Show();
       }
 
       public override void Dynamics(ref BIM.Point3d Point, BIM.View View, BIM.MsdDrawingMode DrawMode)
@@ -41,8 +47,6 @@ namespace rm21Ustn.rm2UprimitiveCommands
             newHA = new rm21HorizontalAlignment();
             newHA.reset(startPt, nextPt);
             newHA.drawTemporary(this);
-            dyncounter++;
-            app.ShowPrompt("Dynamics state:InitialTan " + dyncounter.ToString());
          }
          else if (internalState == CmdState_.appendArc)
          {
@@ -87,7 +91,7 @@ namespace rm21Ustn.rm2UprimitiveCommands
             newHA = new rm21HorizontalAlignment();
             newHA.reset(startPt, nextPt);
             newHA.drawTemporary(this);
-            app.ShowPrompt("Data Point state:InitialTan");
+            //app.ShowPrompt("Data Point state:InitialTan");
             internalState = CmdState_.appendArc;
             app.CommandState.StartDynamics();
          }
@@ -96,7 +100,7 @@ namespace rm21Ustn.rm2UprimitiveCommands
             if ((nextPt - newHA.EndPoint).Length < 0.00001) return;
             newHA.appendArc(nextPt, this.defaultRadius);
             newHA.drawTemporary(this);
-            app.ShowPrompt("Data Point state:AppendArc");
+            //app.ShowPrompt("Data Point state:AppendArc");
             internalState = CmdState_.appendTan;
             app.CommandState.StartDynamics();
          }
@@ -198,6 +202,26 @@ namespace rm21Ustn.rm2UprimitiveCommands
       public void setDrawingStateTemporary()
       {
          this.drawingState = DrawingState.temporary;
+      }
+
+      public void setAlignmentValues(
+         int itemIndex, 
+         String BegSta, 
+         String Length, 
+         String Azimuth, 
+         String Radius, 
+         String Deflection)
+      {
+         int placeholder = 0;
+         if (grid.Rows.Count == 0)
+            grid.Rows.Add();
+         while (itemIndex >= grid.Rows.Count)
+         {  grid.Rows.Add();  }
+         grid.Rows[itemIndex].Cells["BeginStation"].Value = BegSta;
+         grid.Rows[itemIndex].Cells["Length"].Value = Length;
+         grid.Rows[itemIndex].Cells["Radius"].Value = Radius;
+         grid.Rows[itemIndex].Cells["Deflection"].Value = Deflection;
+         grid.Refresh();
       }
    }
 

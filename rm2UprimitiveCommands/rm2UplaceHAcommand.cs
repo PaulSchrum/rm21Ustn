@@ -8,6 +8,7 @@ using rm21Ustn.Utilities;
 using ptsCogo;
 using ptsCogo.Angle;
 using rm21Ustn.GUI.Forms;
+using System.Threading;
 
 namespace rm21Ustn.rm2UprimitiveCommands
 {
@@ -40,7 +41,7 @@ namespace rm21Ustn.rm2UprimitiveCommands
          var nextPt = rm2Upoint.CreatePtsPoint(Point);
          if (internalState == CmdState_.initiate)
          {
-            app.ShowPrompt("Dynamics state:Initiate");
+            //app.ShowPrompt("Dynamics state:Initiate");
          }
          else if (internalState == CmdState_.initialTan)
          {
@@ -68,7 +69,7 @@ namespace rm21Ustn.rm2UprimitiveCommands
          else if (internalState == CmdState_.acceptAndDone)
          {
 
-            app.ShowPrompt("Dynamics state:AcceptAndDone");
+            //app.ShowPrompt("Dynamics state:AcceptAndDone");
          }
          else
          {
@@ -83,7 +84,7 @@ namespace rm21Ustn.rm2UprimitiveCommands
          {
             this.startPt = rm2Upoint.CreatePtsPoint(Point);
             internalState = CmdState_.initialTan;
-            app.ShowPrompt("Data Point state:Initiate");
+            //app.ShowPrompt("Data Point state:Initiate");
             app.CommandState.StartDynamics();
          }
          else if (internalState == CmdState_.initialTan)
@@ -110,14 +111,14 @@ namespace rm21Ustn.rm2UprimitiveCommands
             newHA.appendTangent(nextPt);
             newHA.drawTemporary(this);
 
-            app.ShowPrompt("Data Point state:AppendTan");
+            //app.ShowPrompt("Data Point state:AppendTan");
             internalState = CmdState_.appendArc;
             app.CommandState.StartDynamics();
          }
          else if (internalState == CmdState_.acceptAndDone)
          {
 
-            app.ShowPrompt("Data Point state:AcceptAndDone");
+            //app.ShowPrompt("Data Point state:AcceptAndDone");
          }
          else
          {
@@ -131,7 +132,7 @@ namespace rm21Ustn.rm2UprimitiveCommands
          if(true ==Double.TryParse(Keyin, out newRad))
          {
             this.defaultRadius = newRad;
-            app.ShowPrompt("Radius set to " + newRad.ToString());
+            //app.ShowPrompt("Radius set to " + newRad.ToString());
          }
       }
 
@@ -154,8 +155,8 @@ namespace rm21Ustn.rm2UprimitiveCommands
 
       public void drawArcSegment(ptsPoint startPt, ptsPoint centerPt, ptsPoint endPt, Double deflection)
       {
-         app.ShowPrompt(String.Format("Defl: {0:0.00}, endPt: {1:0.00}, {2:0.00}", 
-            deflection.AsPtsDegree().getAsDouble(), endPt.x, endPt.y));
+         //app.ShowPrompt(String.Format("Defl: {0:0.00}, endPt: {1:0.00}, {2:0.00}", 
+         //   deflection.AsPtsDegree().getAsDouble(), endPt.x, endPt.y));
          var uCenterPt = rm2Upoint.CreateUstnPoint(centerPt);
          BIM.Point3d uStartPt; BIM.Point3d uEndPt;
          if (deflection > 0)
@@ -204,23 +205,23 @@ namespace rm21Ustn.rm2UprimitiveCommands
          this.drawingState = DrawingState.temporary;
       }
 
-      public void setAlignmentValues(
-         int itemIndex, 
-         String BegSta, 
-         String Length, 
-         String Azimuth, 
-         String Radius, 
-         String Deflection)
+      public void setAlignmentValues(List<alignmentDataPacket> dataSummary)
       {
-         int placeholder = 0;
-         if (grid.Rows.Count == 0)
-            grid.Rows.Add();
-         while (itemIndex >= grid.Rows.Count)
-         {  grid.Rows.Add();  }
-         grid.Rows[itemIndex].Cells["BeginStation"].Value = BegSta;
-         grid.Rows[itemIndex].Cells["Length"].Value = Length;
-         grid.Rows[itemIndex].Cells["Radius"].Value = Radius;
-         grid.Rows[itemIndex].Cells["Deflection"].Value = Deflection;
+         foreach (var row in dataSummary)
+         {
+            if (true == row.HasChanged)
+            {
+               if (row.myIndex >= grid.Rows.Count)
+                  grid.Rows.Add();
+
+               grid.Rows[row.myIndex].Cells["BeginStation"].Value = 
+                  CogoStation.stationToString(row.BeginStationDbl);
+               grid.Rows[row.myIndex].Cells["Length"].Value = String.Format("{0:0.00}", row.Length);
+               grid.Rows[row.myIndex].Cells["Radius"].Value = String.Format("{0:0.00}", row.Radius);
+               grid.Rows[row.myIndex].Cells["Deflection"].Value = String.Format("{0:0.00}", row.Deflection);
+               row.HasChanged = false;
+            }
+         }
          grid.Refresh();
       }
    }
